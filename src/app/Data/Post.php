@@ -22,7 +22,7 @@ class Post extends Data
         array $posts
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_post SET id = ?, userId = ?, title = ?, body = ?",
+            query: "INSERT INTO tbl_post (id, userId, title, body) VALUES (?, ?, ?, ?)",
             types: 'ssss',
             paramSets: $posts
         );

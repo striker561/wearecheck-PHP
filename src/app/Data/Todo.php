@@ -21,7 +21,7 @@ class Todo extends Data
         array $todos
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_todo SET id = ?, userId = ?, title = ?, completed = ?",
+            query: "INSERT INTO tbl_todo (id, userId, title, completed) VALUES (?, ?, ?, ?)",
             types: 'sssi',
             paramSets: $todos
         );

@@ -21,7 +21,7 @@ class DBUtil
             $this->logger = new Logger(name: 'db_logger');
             $this->logger->pushHandler(
                 handler: new StreamHandler(
-                    stream: __DIR__ . '/../',
+                    stream: __DIR__ . '/../../logs/db.log',
                     level: Level::Debug
                 )
             );

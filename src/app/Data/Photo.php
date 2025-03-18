@@ -23,7 +23,7 @@ class Photo extends Data
         array $photos
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_photo SET id = ?, albumId = ?, title = ?, url = ?, thumbnailUrl = ?",
+            query: "INSERT INTO tbl_photo (id, albumId, title, url, thumbnailUrl) VALUES (?, ?, ?, ?, ?)",
             types: 'sssss',
             paramSets: $photos
         );

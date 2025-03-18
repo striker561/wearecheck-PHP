@@ -21,13 +21,14 @@ class Album extends Data
         array $albums
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_album SET id = ?, userId = ?, title = ?",
+            query: "INSERT INTO tbl_album (id, userId, title) VALUES (?, ?, ?)",
             types: 'sss',
             paramSets: $albums
         );
     }
 
-    public function getAlbumCount(): int {
+    public function getAlbumCount(): int
+    {
         return $this->db->getSingleRecord(
             query: "SELECT COUNT(id) AS albumCount FROM tbl_album WHERE id != ?",
             types: 'i',

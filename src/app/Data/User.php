@@ -25,7 +25,7 @@ class User extends Data
         array $users
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_user SET id = ?, name = ?, username = ?, address = ?, phone = ?, website = ?, company = ?",
+            query: "INSERT INTO tbl_user (id, name, username, address, phone, website, company) VALUES (?, ?, ?, ?, ?, ?, ?)",
             types: 'sssssss',
             paramSets: $users
         );

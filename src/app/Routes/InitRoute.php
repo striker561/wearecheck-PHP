@@ -111,11 +111,17 @@ class InitRoute
 
         foreach ($response as $user) {
             $ulid =  $this->app->getULID();
-
             $this->userMap[$user['id']] = $ulid;
-            $user['id'] = $ulid;
 
-            $dataToImport[] = $user;
+            $dataToImport[] = [
+                $ulid,
+                $user['name'],
+                $user['username'],
+                json_encode(value: $user['address']),
+                $user['phone'],
+                $user['website'],
+                json_encode(value: $user['company'])
+            ];
         }
 
         //unset response
@@ -138,10 +144,12 @@ class InitRoute
 
         $dataToImport = [];
         foreach ($response as $todo) {
-            $todo["id"] = $this->app->getULID();
-            $todo["userId"] = $this->userMap[$todo["userId"]];
-
-            $dataToImport[] = $todo;
+            $dataToImport[] = [
+                $this->app->getULID(),
+                $this->userMap[$todo["userId"]],
+                $todo['title'],
+                $todo['completed']
+            ];
         }
 
         //unset response
@@ -165,13 +173,14 @@ class InitRoute
         $dataToImport = [];
         foreach ($response as $post) {
             $ulid =  $this->app->getULID();
-
             $this->postMap[$post['id']] = $ulid;
 
-            $post['id'] = $ulid;
-            $post['userId'] = $this->userMap[$post['userId']];
-
-            $dataToImport[] = $post;
+            $dataToImport[] = [
+                $ulid,
+                $this->userMap[$post['userId']],
+                $post['title'],
+                $post['body']
+            ];
         }
 
         //unset response
@@ -198,10 +207,11 @@ class InitRoute
 
             $this->albumMap[$album['id']] = $ulid;
 
-            $album['id'] = $ulid;
-            $album['userId'] = $this->userMap[$album['userId']];
-
-            $dataToImport[] = $album;
+            $dataToImport[] = [
+                $ulid,
+                $this->userMap[$album['userId']],
+                $album['title']
+            ];
         }
 
         //unset response
@@ -224,11 +234,13 @@ class InitRoute
 
         $dataToImport = [];
         foreach ($response as $comment) {
-
-            $comment['id'] = $this->app->getULID();
-            $comment['postId'] = $this->postMap[$comment['postId']];
-
-            $dataToImport[] = $comment;
+            $dataToImport[] = [
+                $this->app->getULID(),
+                $this->postMap[$comment['postId']],
+                $comment['name'],
+                $comment['email'],
+                $comment['body']
+            ];
         }
 
         //unset response
@@ -251,9 +263,13 @@ class InitRoute
 
         $dataToImport = [];
         foreach ($response as $photo) {
-            $photo['id'] = $this->app->getULID();
-            $photo['albumId'] = $this->albumMap[$photo['albumId']];
-            $dataToImport[] = $photo;
+            $dataToImport[] = [
+                $this->app->getULID(),
+                $this->albumMap[$photo['albumId']],
+                $photo['title'],
+                $photo['url'],
+                $photo['thumbnailUrl']
+            ];
         }
 
         //unset response

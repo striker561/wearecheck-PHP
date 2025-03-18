@@ -24,7 +24,7 @@ class Comment extends Data
         array $comments
     ): bool {
         return $this->db->insertBulkRecords(
-            query: "INSERT INTO tbl_comment SET id = ?, postId = ?, name = ?, email = ?, body = ?",
+            query: "INSERT INTO tbl_comment (id, postId, name, email, body) VALUES (?, ?, ?, ?, ?)",
             types: 'sssss',
             paramSets: $comments
         );
