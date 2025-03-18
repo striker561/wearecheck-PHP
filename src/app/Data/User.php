@@ -53,7 +53,7 @@ class User extends Data
             );
         }
         return $this->db->getMultipleRecords(
-            query: "SELECT FROM tbl_user LIMIT ? OFFSET ?",
+            query: "SELECT * FROM tbl_user LIMIT ? OFFSET ?",
             types: 'ii',
             params: [$limit, $offset]
         );
