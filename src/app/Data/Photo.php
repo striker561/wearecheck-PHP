@@ -29,12 +29,27 @@ class Photo extends Data
         );
     }
 
-    public function getPhotoCount(): int
-    {
+    public function getPhotoCount(
+        ?string $albumId = null,
+    ): int {
+        $query = "SELECT COUNT(id) AS photoCount FROM tbl_photo";
+        $types = '';
+        $param = [];
+
+        if ($albumId) {
+            $query .= " WHERE albumId = ?";
+            $types .= 's';
+            $param[] = $albumId;
+        } else {
+            $query .= " WHERE id != ?";
+            $types .= 'i';
+            $param[] = 0;
+        }
+
         return $this->db->getSingleRecord(
-            query: "SELECT COUNT(id) AS photoCount FROM tbl_photo WHERE id != ?",
-            types: 'i',
-            param: [0]
+            query: $query,
+            types: $types,
+            param: $param
         )['photoCount'];
     }
 
