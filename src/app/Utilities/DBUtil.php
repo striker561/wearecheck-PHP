@@ -61,10 +61,10 @@ class DBUtil
         }
     }
 
-    public function getMultipleRecords($sql, $types = null, $params = []): array
+    public function getMultipleRecords($query, $types = null, $params = []): array
     {
         try {
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->conn->prepare($query);
             if (!empty($params) && !empty($params)) {
                 $stmt->bind_param($types, ...$params);
             }
