@@ -34,7 +34,7 @@ class Comment extends Data
     {
         return $this->db->getSingleRecord(
             query: "SELECT COUNT(id) AS commentCount FROM tbl_comment WHERE postId = ?",
-            types: 'i',
+            types: 's',
             param: [$postId]
         )['commentCount'];
     }

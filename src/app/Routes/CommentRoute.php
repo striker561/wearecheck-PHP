@@ -34,7 +34,7 @@ class CommentRoute
         }
 
         $totalData = $this->comment->getCommentCount(
-            postId: $_POST['postId']
+            postId: $_GET['postId']
         );
 
         $paginationData = $this->app->preparePaginationResponse(
@@ -44,7 +44,7 @@ class CommentRoute
         );
 
         $data = $this->comment->getComment(
-            postId: $_POST['postId'],
+            postId: $_GET['postId'],
             limit: $paginationData['itemPerPage'],
             offset: $paginationData['offset'],
         );
