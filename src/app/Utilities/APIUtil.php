@@ -15,8 +15,6 @@ class APIUtil
         private string $endpoint,
         protected ?Logger $logger = null,
     ) {
-        $this->logger = $logger;
-        $this->endpoint = $endpoint;
         $this->client = new Client();
     }
 

@@ -10,10 +10,7 @@ use Monolog\Handler\StreamHandler;
 class App
 {
 
-    public function __construct(private string $appName)
-    {
-        $this->appName = $appName;
-    }
+    public function __construct(private string $appName) {}
 
     public function getAppName(): string
     {
@@ -47,5 +44,12 @@ class App
             )
         );
         return $logger;
+    }
+
+    public function sendResponse($statusCode = 200, mixed $data): never
+    {
+        http_response_code(response_code: $statusCode);
+        echo json_encode(value: $data);
+        exit;
     }
 }

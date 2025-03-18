@@ -6,10 +6,7 @@ use JSONAPI\Utilities\DBUtil;
 
 class Data
 {
-    public function __construct(protected DBUtil $db)
-    {
-        $this->db = $db;
-    }
+    public function __construct(protected DBUtil $db) {}
 
     protected function getSingleColumn(
         string $tableName,
