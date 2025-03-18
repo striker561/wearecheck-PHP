@@ -6,7 +6,7 @@ class User extends Data
 {
 
     public function saveUser(
-        string $ulid,
+        string $id,
         string $name,
         string $username,
         string $address,
@@ -17,7 +17,7 @@ class User extends Data
         return $this->db->insertSingleRecord(
             query: "INSERT INTO tbl_user SET id = ?, name = ?, username = ?, address = ?, phone = ?, website = ?, company = ?",
             types: 'sssssss',
-            param: [$ulid, $name, $username, $address, $phone, $website, $company]
+            param: [$id, $name, $username, $address, $phone, $website, $company]
         );
     }
 
