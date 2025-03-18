@@ -19,6 +19,17 @@ class Comment extends Data
         );
     }
 
+
+    public function saveMultipleComments(
+        array $comments
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_comment SET id = ?, postId = ?, name = ?, email = ?, body = ?",
+            types: 'sssss',
+            paramSets: $comments
+        );
+    }
+
     public function getComment(
         string $postId,
         int $limit = 10,

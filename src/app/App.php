@@ -10,12 +10,7 @@ use Monolog\Handler\StreamHandler;
 class App
 {
 
-    public function __construct(private string $appName) {}
-
-    public function getAppName(): string
-    {
-        return $this->appName;
-    }
+    public function __construct() {}
 
     public function getAppUrl(): string
     {

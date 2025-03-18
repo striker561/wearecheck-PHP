@@ -17,6 +17,17 @@ class Album extends Data
         );
     }
 
+    public function saveMultipleAlbums(
+        array $albums
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_album SET id = ?, userId = ?, title = ?",
+            types: 'sss',
+            paramSets: $albums
+        );
+    }
+
+
     public function getAlbum(
         ?string $userId = null,
         int $limit = 10,

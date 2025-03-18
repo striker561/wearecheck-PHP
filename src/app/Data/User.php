@@ -21,6 +21,16 @@ class User extends Data
         );
     }
 
+    public function saveMultipleUsers(
+        array $users
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_user SET id = ?, name = ?, username = ?, address = ?, phone = ?, website = ?, company = ?",
+            types: 'sssssss',
+            paramSets: $users
+        );
+    }
+
     public function getUser(
         int $limit = 10,
         int $offset = 0,

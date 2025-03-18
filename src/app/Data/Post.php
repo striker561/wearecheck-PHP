@@ -18,6 +18,16 @@ class Post extends Data
         );
     }
 
+    public function saveMultiplePosts(
+        array $posts
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_post SET id = ?, userId = ?, title = ?, body = ?",
+            types: 'ssss',
+            paramSets: $posts
+        );
+    }
+
     public function getPost(
         ?string $userId = null,
         int $limit = 10,

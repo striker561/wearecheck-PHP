@@ -19,6 +19,16 @@ class Photo extends Data
         );
     }
 
+    public function saveMultiplePhotos(
+        array $photos
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_photo SET id = ?, albumId = ?, title = ?, url = ?, thumbnailUrl = ?",
+            types: 'sssss',
+            paramSets: $photos
+        );
+    }
+
     public function getPhoto(
         ?string $albumId = null,
         int $limit = 10,

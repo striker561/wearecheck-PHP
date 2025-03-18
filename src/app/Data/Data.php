@@ -8,6 +8,14 @@ class Data
 {
     public function __construct(protected DBUtil $db) {}
 
+    public function deleteAllRow(
+        string $tableName,
+    ): bool {
+        return $this->db->getConnectionString()->query(
+            "DELETE FROM $tableName"
+        );
+    }
+
     protected function getSingleColumn(
         string $tableName,
         string $columnName,

@@ -16,6 +16,16 @@ class Todo extends Data
             param: [$id, $userId, $title, $completed]
         );
     }
+
+    public function saveMultipleTodos(
+        array $todos
+    ): bool {
+        return $this->db->insertBulkRecords(
+            query: "INSERT INTO tbl_todo SET id = ?, userId = ?, title = ?, completed = ?",
+            types: 'sssi',
+            paramSets: $todos
+        );
+    }
     
     public function getTodo(
         ?string $userId = null,
