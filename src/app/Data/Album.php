@@ -27,12 +27,27 @@ class Album extends Data
         );
     }
 
-    public function getAlbumCount(): int
-    {
+    public function getAlbumCount(
+        ?string $userId = null,
+    ): int {
+        $query = "SELECT COUNT(id) AS albumCount FROM tbl_album";
+        $types = '';
+        $param = [];
+
+        if ($userId) {
+            $query .= " WHERE userId = ?";
+            $types .= 's';
+            $param[] = $userId;
+        } else {
+            $query .= " WHERE id != ?";
+            $types .= 'i';
+            $param[] = 0;
+        }
+
         return $this->db->getSingleRecord(
-            query: "SELECT COUNT(id) AS albumCount FROM tbl_album WHERE id != ?",
-            types: 'i',
-            param: [0]
+            query: $query,
+            types: $types,
+            param: $param
         )['albumCount'];
     }
 

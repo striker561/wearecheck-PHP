@@ -35,7 +35,6 @@ class Todo extends Data
         $types = '';
         $param = [];
 
-
         if ($userId) {
             $query .= " WHERE userId = ?";
             $types .= 's';

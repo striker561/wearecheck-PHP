@@ -25,40 +25,25 @@ class AlbumRoute
     {
         $response = [];
 
-        if (isset($_GET['userId'])) {
-            $data = $this->album->getAlbum(
-                userId: $_GET['userId']
-            );
-            if (!$data) {
-                $this->app->sendResponse(
-                    statusCode: 40,
-                    data: [
-                        'error' => "Record not found"
-                    ]
-                );
-            }
-            $response = $data;
-        }
+        $totalData = $this->album->getAlbumCount(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,);
 
-        if (!isset($_GET['userId'])) {
-            $totalData = $this->album->getAlbumCount();
+        $paginationData = $this->app->preparePaginationResponse(
+            totalItems: $totalData,
+            currentPage: $_GET['page'] ?? 1,
+            itemsPerPage: $_GET['limit'] ?? 10,
+        );
 
-            $paginationData = $this->app->preparePaginationResponse(
-                totalItems: $totalData,
-                currentPage: $_GET['page'] ?? 1,
-                itemsPerPage: $_GET['limit'] ?? 10,
-            );
+        $data = $this->album->getAlbum(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,
+            limit: $paginationData['itemPerPage'],
+            offset: $paginationData['offset'],
+        );
 
-            $data = $this->album->getAlbum(
-                limit: $paginationData['itemPerPage'],
-                offset: $paginationData['offset'],
-            );
-
-            $response = [
-                'items' => $data,
-                'pagination' => $paginationData,
-            ];
-        }
+        $response = [
+            'items' => $data,
+            'pagination' => $paginationData,
+        ];
 
         $this->app->sendResponse(
             statusCode: 200,
