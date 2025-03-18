@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\Album;
+use JSONAPI\Data\Album;
 use JSONAPI\Utilities\DBUtil;
 
 class AlbumRoute

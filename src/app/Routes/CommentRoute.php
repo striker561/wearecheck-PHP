@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\Comment;
+use JSONAPI\Data\Comment;
 use JSONAPI\Utilities\DBUtil;
 
 class CommentRoute

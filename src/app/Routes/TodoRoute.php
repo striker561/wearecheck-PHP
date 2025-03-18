@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\Todo;
+use JSONAPI\Data\Todo;
 use JSONAPI\Utilities\DBUtil;
 
 class TodoRoute

@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\Post;
+use JSONAPI\Data\Post;
 use JSONAPI\Utilities\DBUtil;
 
 

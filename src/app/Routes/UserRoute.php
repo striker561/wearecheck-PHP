@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\User;
+use JSONAPI\Data\User;
 use JSONAPI\Utilities\DBUtil;
 
 class UserRoute

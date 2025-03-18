@@ -1,6 +1,6 @@
 <?php
 
-namespace JSONAPi\Data;
+namespace JSONAPI\Data;
 
 class User extends Data
 {

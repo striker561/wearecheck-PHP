@@ -3,7 +3,7 @@
 namespace JSONAPI\Routes;
 
 use JSONAPI\App;
-use JSONAPi\Data\Photo;
+use JSONAPI\Data\Photo;
 use JSONAPI\Utilities\DBUtil;
 
 class PhotoRoute
