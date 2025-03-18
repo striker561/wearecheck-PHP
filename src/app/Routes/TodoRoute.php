@@ -24,59 +24,29 @@ class TodoRoute
     {
         $response = [];
 
+        $totalData = $this->todo->getTodoCount(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,
+            completed: (isset($_GET['completed'])) ? $_GET['completed'] == "true" : null,
+        );
 
-        if (isset($_GET['userId'])) {
-            $data = $this->todo->getTodo(
-                userId: $_GET['userId']
-            );
-            if (!$data) {
-                $this->app->sendResponse(
-                    statusCode: 40,
-                    data: [
-                        'error' => "Record not found"
-                    ]
-                );
-            }
-            $response = $data;
-        }
+        $paginationData = $this->app->preparePaginationResponse(
+            totalItems: $totalData,
+            currentPage: $_GET['page'] ?? 1,
+            itemsPerPage: $_GET['limit'] ?? 10,
+        );
 
-
-        if (isset($_GET['completed'])) {
-            $data = $this->todo->getTodo(
-                completed: $_GET['completed'] == "true"
-            );
-            if (!$data) {
-                $this->app->sendResponse(
-                    statusCode: 40,
-                    data: [
-                        'error' => "Record not found"
-                    ]
-                );
-            }
-            $response = $data;
-        }
+        $data = $this->todo->getTodo(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,
+            completed: (isset($_GET['completed'])) ? $_GET['completed'] == "true" : null,
+            limit: $paginationData['itemPerPage'],
+            offset: $paginationData['offset'],
+        );
 
 
-        if (!isset($_GET['userId']) && !isset($_GET['completed'])) {
-            $totalData = $this->todo->getTodoCount();
-
-            $paginationData = $this->app->preparePaginationResponse(
-                totalItems: $totalData,
-                currentPage: $_GET['page'] ?? 1,
-                itemsPerPage: $_GET['limit'] ?? 10,
-            );
-
-            $data = $this->todo->getTodo(
-                limit: $paginationData['itemPerPage'],
-                offset: $paginationData['offset'],
-            );
-
-
-            $response = [
-                'items' => $data,
-                'pagination' => $paginationData,
-            ];
-        }
+        $response = [
+            'items' => $data,
+            'pagination' => $paginationData,
+        ];
 
         $this->app->sendResponse(
             statusCode: 200,

@@ -27,16 +27,39 @@ class Todo extends Data
         );
     }
 
-    public function getTodoCount(): int
-    {
+    public function getTodoCount(
+        ?string $userId = null,
+        ?bool $completed = null
+    ): int {
+        $query = "SELECT COUNT(id) AS todoCount FROM tbl_todo";
+        $types = '';
+        $param = [];
+
+
+        if ($userId) {
+            $query .= " WHERE userId = ?";
+            $types .= 's';
+            $param[] = $userId;
+        } else {
+            $query .= " WHERE id != ?";
+            $types .= 'i';
+            $param[] = 0;
+        }
+
+        if ($completed !== null) {
+            $query .= " AND completed = ?";
+            $types .= 'i';
+            $param[] = $completed ? 1 : 0;
+        }
+
         return $this->db->getSingleRecord(
-            query: "SELECT COUNT(id) AS todoCount FROM tbl_todo WHERE id != ?",
-            types: 'i',
-            param: [0]
+            query: $query,
+            types: $types,
+            param: $param
         )['todoCount'];
     }
-    
-    
+
+
     public function getTodo(
         ?string $userId = null,
         ?bool $completed = null,
