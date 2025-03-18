@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "53162c55-67f0-4c4d-837e-0cf5a2271024",
+		"name": "Weare-Check",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27994467"
+	},
+	"item": [
+		{
+			"name": "JSON API",
+			"item": [
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/comments",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/todos",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Albums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/albums",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"albums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Photos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Application API",
+			"item": [
+				{
+					"name": "Load Json To Database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/initialize",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"initialize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"users"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/todos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "completed",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/posts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "01JPN2F6VXJ4YYX3CF0P6J38W8",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/comments?postId=01JPN2F75KQDT1QFBY6FVAEJ6N",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "01JPN2F75KQDT1QFBY6FVAEJ6N"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Albums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/albums",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "01JPN2F6VXJ4YYX3CF0P6J38W8",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Photos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/git/wearecheck-PHP/photos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"git",
+								"wearecheck-PHP",
+								"photos"
+							],
+							"query": [
+								{
+									"key": "albumId",
+									"value": "01JPN2F7ANAMTSNEW84QDPKTFT",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
