@@ -29,12 +29,27 @@ class Post extends Data
     }
 
 
-    public function getPostCount(): int
-    {
+    public function getPostCount(
+        ?string $userId = null,
+    ): int {
+        $query = "SELECT COUNT(id) AS postCount FROM tbl_post";
+        $types = '';
+        $param = [];
+
+        if($userId){
+            $query .= " WHERE userId = ?";
+            $types .= 's';
+            $param[] = $userId;
+        } else {
+            $query .= " WHERE id != ?";
+            $types .= 'i';
+            $param[] = 0;
+        }
+
         return $this->db->getSingleRecord(
-            query: "SELECT COUNT(id) AS postCount FROM tbl_post WHERE id != ?",
-            types: 'i',
-            param: [0]
+            query: $query,
+            types: $types,
+            param: $param
         )['postCount'];
     }
 

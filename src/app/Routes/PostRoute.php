@@ -22,43 +22,28 @@ class PostRoute
 
     public function getPosts(): void
     {
-
         $response = [];
 
-        if (isset($_GET['userId'])) {
-            $data = $this->post->getPost(
-                userId: $_GET['userId']
-            );
-            if (!$data) {
-                $this->app->sendResponse(
-                    statusCode: 40,
-                    data: [
-                        'error' => "Record not found"
-                    ]
-                );
-            }
-            $response = $data;
-        }
+        $totalData = $this->post->getPostCount(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,
+        );
 
-        if (!isset($_GET['userId'])) {
-            $totalData = $this->post->getPostCount();
+        $paginationData = $this->app->preparePaginationResponse(
+            totalItems: $totalData,
+            currentPage: $_GET['page'] ?? 1,
+            itemsPerPage: $_GET['limit'] ?? 10,
+        );
 
-            $paginationData = $this->app->preparePaginationResponse(
-                totalItems: $totalData,
-                currentPage: $_GET['page'] ?? 1,
-                itemsPerPage: $_GET['limit'] ?? 10,
-            );
+        $data = $this->post->getPost(
+            userId: (isset($_GET['userId'])) ? $_GET['userId'] : null,
+            limit: $paginationData['itemPerPage'],
+            offset: $paginationData['offset'],
+        );
 
-            $data = $this->post->getPost(
-                limit: $paginationData['itemPerPage'],
-                offset: $paginationData['offset'],
-            );
-
-            $response = [
-                'items' => $data,
-                'pagination' => $paginationData,
-            ];
-        }
+        $response = [
+            'items' => $data,
+            'pagination' => $paginationData,
+        ];
 
         $this->app->sendResponse(
             statusCode: 200,
