@@ -30,6 +30,16 @@ class Comment extends Data
         );
     }
 
+    public function getCommentCount(string $postId): int
+    {
+        return $this->db->getSingleRecord(
+            query: "SELECT COUNT(id) AS commentCount FROM tbl_comment WHERE postId = ?",
+            types: 'i',
+            param: [$postId]
+        )['commentCount'];
+    }
+
+
     public function getComment(
         string $postId,
         int $limit = 10,

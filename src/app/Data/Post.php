@@ -28,6 +28,16 @@ class Post extends Data
         );
     }
 
+
+    public function getPostCount(): int
+    {
+        return $this->db->getSingleRecord(
+            query: "SELECT COUNT(id) AS postCount FROM tbl_post WHERE id != ?",
+            types: 'i',
+            param: [0]
+        )['postCount'];
+    }
+
     public function getPost(
         ?string $userId = null,
         int $limit = 10,

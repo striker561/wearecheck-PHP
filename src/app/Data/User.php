@@ -31,10 +31,27 @@ class User extends Data
         );
     }
 
+    public function getUserCount(): int
+    {
+        return $this->db->getSingleRecord(
+            query: "SELECT COUNT(id) AS userCount FROM tbl_user WHERE id != ?",
+            types: 'i',
+            param: [0]
+        )['userCount'];
+    }
+
     public function getUser(
+        ?string $userId = null,
         int $limit = 10,
         int $offset = 0,
     ): ?array {
+        if ($userId) {
+            return $this->db->getSingleRecord(
+                query: "SELECT * FROM tbl_user WHERE id = ?",
+                types: 's',
+                param: [$userId]
+            );
+        }
         return $this->db->getMultipleRecords(
             query: "SELECT FROM tbl_user LIMIT ? OFFSET ?",
             types: 'ii',

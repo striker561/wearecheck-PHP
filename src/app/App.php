@@ -47,4 +47,24 @@ class App
         echo json_encode(value: $data);
         exit;
     }
+
+    public function preparePaginationResponse(
+        int $totalItems,
+        int $currentPage = 1,
+        int $itemsPerPage = 10
+    ): array {
+        $itemsPerPage = max(1, $itemsPerPage);
+        $currentPage = max(1, $currentPage);
+
+        $totalPages = max(1, ceil($totalItems / $itemsPerPage));
+        $offset = ($currentPage - 1) * $itemsPerPage;
+
+        return [
+            'total' => $totalItems,
+            'currentPage' => $currentPage,
+            'itemPerPage' => $itemsPerPage,
+            'totalPages' => $totalPages,
+            'offset' => $offset
+        ];
+    }
 }

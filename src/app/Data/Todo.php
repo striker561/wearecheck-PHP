@@ -26,6 +26,16 @@ class Todo extends Data
             paramSets: $todos
         );
     }
+
+    public function getTodoCount(): int
+    {
+        return $this->db->getSingleRecord(
+            query: "SELECT COUNT(id) AS todoCount FROM tbl_todo WHERE id != ?",
+            types: 'i',
+            param: [0]
+        )['todoCount'];
+    }
+    
     
     public function getTodo(
         ?string $userId = null,

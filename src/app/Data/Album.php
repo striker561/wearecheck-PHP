@@ -27,6 +27,14 @@ class Album extends Data
         );
     }
 
+    public function getAlbumCount(): int {
+        return $this->db->getSingleRecord(
+            query: "SELECT COUNT(id) AS albumCount FROM tbl_album WHERE id != ?",
+            types: 'i',
+            param: [0]
+        )['albumCount'];
+    }
+
 
     public function getAlbum(
         ?string $userId = null,
