@@ -1,0 +1,13 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "monolog/monolog": "^3.5",
+        "guzzlehttp/guzzle": "^7.9",
+        "robinvdvleuten/ulid": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JSONAPI\\": "src/app/"
+        }
+    }
+}
