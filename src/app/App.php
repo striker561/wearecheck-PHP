@@ -1,0 +1,51 @@
+<?php
+
+namespace JSONAPI;
+
+use Ulid\Ulid;
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+class App
+{
+
+    public function __construct(private string $appName)
+    {
+        $this->appName = $appName;
+    }
+
+    public function getAppName(): string
+    {
+        return $this->appName;
+    }
+
+    public function getAppUrl(): string
+    {
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'];
+        $baseUrl = "$protocol://$host/";
+        return $baseUrl;
+    }
+
+
+    public function getULID(): string
+    {
+        return Ulid::generate();
+    }
+
+    public function createLogger(
+        string $name,
+        string $logFilePath,
+        Level $level
+    ): Logger {
+        $logger = new Logger(name: $name);
+        $logger->pushHandler(
+            handler: new StreamHandler(
+                stream: $logFilePath,
+                level: $level
+            )
+        );
+        return $logger;
+    }
+}
