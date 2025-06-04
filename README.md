@@ -1,6 +1,6 @@
 ## Overview
 
-This project implements a custom REST API using core PHP (no frameworks) that:
+This project implements a custom REST API using core PHP that:
 
 - Imports data from JSONPlaceholder API endpoints (users, posts, comments, todos, albums, photos)
 - Establishes proper relationships between data entities
